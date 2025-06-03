@@ -56,6 +56,7 @@ module.exports={
                             idUser:result.id,
                             nome:result.nome,
                             email:result.email,
+                            uf:result.uf,
                             level:result.level
                         },'segredo',{expiresIn: '1h'});
                         return res.status(200).send({
