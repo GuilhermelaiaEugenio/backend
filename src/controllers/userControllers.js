@@ -53,7 +53,7 @@ module.exports={
                     }
                     if(respok){
                         const token = jwt.sign({
-                            idUser:result.id,
+                            idUser:result.codcli,
                             nome:result.nome,
                             email:result.email,
                             uf:result.uf,
