@@ -47,5 +47,37 @@ module.exports = {
         } catch (error) {
             return res.status(400).json({ error: error.message });
         }
+    },
+
+    async updateExercicios(req, res) {
+        try {
+            const { codexer } = req.params;
+            const { nome, dias, descr, codcli } = req.body;
+
+            const exercicio = await knex('exercicios')
+                .where({ codexer })
+                .first();
+
+            if (!exercicio) {
+                return res.status(404).json({ error: 'Exercício não encontrado' });
+            }
+
+            await knex('exercicios')
+                .where({ codexer })
+                .update({ 
+                    nome: nome || exercicio.nome,
+                    dias: dias || exercicio.dias,
+                    descr: descr || exercicio.descr,
+                    codcli: codcli || exercicio.codcli
+                });
+
+            const exercicioAtualizado = await knex('exercicios')
+                .where({ codexer })
+                .first();
+
+            return res.status(200).json(exercicioAtualizado);
+        } catch (error) {
+            return res.status(400).json({ error: error.message });
+        }
     }
 }
