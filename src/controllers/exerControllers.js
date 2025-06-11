@@ -26,4 +26,26 @@ module.exports = {
             return res.status(400).json({error: error.message});
         }
     },
+
+    async deleteExercicios(req, res) {
+        try {
+            const { codexer } = req.params;
+
+            const exercicio = await knex('exercicios')
+                .where({ codexer })
+                .first();
+
+            if (!exercicio) {
+                return res.status(404).json({ error: 'Exercício não encontrado' });
+            }
+
+            await knex('exercicios')
+                .where({ codexer })
+                .delete();
+
+            return res.status(200).json({ message: 'Exercício excluído com sucesso' });
+        } catch (error) {
+            return res.status(400).json({ error: error.message });
+        }
+    }
 }

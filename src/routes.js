@@ -15,5 +15,6 @@ routes.put('/user/:codcli', userControllers.updateClient);
 // Rotas de exercícios
 routes.post('/exercicios', exerControllers.create);
 routes.get('/exercicios' , exerControllers.searchExercicios);
+routes.delete('/exercicios/:codexer', exerControllers.deleteExercicios);
 
 module.exports = routes;
