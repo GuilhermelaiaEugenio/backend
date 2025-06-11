@@ -3,6 +3,7 @@ const raizControllers = require('./controllers/raizControllers');
 const userControllers = require('./controllers/userControllers');
 const exerControllers = require('./controllers/exerControllers');
 const authorization = require('./middleware/authorization');
+const videoControllers = require('./controllers/videoControllers');
 
 const routes = express.Router();
 
@@ -17,5 +18,7 @@ routes.post('/exercicios', exerControllers.create);
 routes.get('/exercicios' , exerControllers.searchExercicios);
 routes.delete('/exercicios/:codexer', exerControllers.deleteExercicios);
 routes.put('/exercicios/:codexer', exerControllers.updateExercicios);
+
+routes.get('/videos' , videoControllers.searchVideos);
 
 module.exports = routes;
