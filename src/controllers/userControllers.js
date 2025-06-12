@@ -95,5 +95,27 @@ module.exports={
         }catch(error){
             return res.status(400).json({error: error.message});
         };
+    },
+
+    async deleteUser(req, res) {
+        try {
+            const { codcli } = req.body;
+
+            if (!codcli) {
+                return res.status(400).send({ error: 'Código do cliente não fornecido' });
+            }
+
+            const result = await knex('clientes').where({ codcli });
+            
+            if (result.length === 0) {
+                return res.status(404).send({ error: 'Cliente não encontrado' });
+            }
+
+            await knex('clientes').where({ codcli }).del();
+            return res.status(200).send({ message: 'Cliente deletado com sucesso' });
+
+        } catch (error) {
+            return res.status(400).json({ error: error.message });
+        }
     }
 }

@@ -12,6 +12,7 @@ routes.get('/user', authorization , userControllers.searchUsersAll);
 routes.post('/user',userControllers.create);
 routes.post('/userauth', userControllers.searcherUser);
 routes.put('/user/:codcli', userControllers.updateClient);
+routes.delete('/user/:codcli', userControllers.deleteUser);
 
 // Rotas de exercícios
 routes.post('/exercicios', exerControllers.create);
